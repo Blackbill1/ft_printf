@@ -6,7 +6,7 @@
 /*   By: tle-dref <tle-dref@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:29 by tle-dref          #+#    #+#             */
-/*   Updated: 2024/10/18 08:07:58 by tle-dref         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:47:09 by tle-dref         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%' && *format + 1)
+		if (*format == '%' && *(format + 1))
 		{
 			format++;
 			res += select_ft(args, *format);
 		}
+		else if (*format == '%' && !*(format + 1))
+			break ;
 		else
 			res += write(1, format, 1);
 		format++;
@@ -55,9 +57,5 @@ int	ft_printf(const char *format, ...)
 
 // int	main(void)
 // {
-// 	unsigned int t = 42;
-// 	int i = 0;
-
-// 	i = printf("%%");
-// 	i = ft_printf("%x\n", t);
+// 	ft_printf("tse %%");
 // }
